@@ -53,6 +53,26 @@ public class RomiDrivetrain extends SubsystemBase {
     m_leftMotor.set(-x);
   }
 
+  public void DriveForward(){
+    m_leftMotor.set(1);
+    m_rightMotor.set(1);
+  }
+
+  public void DriveLeft(){
+      m_leftMotor.set(0);
+      m_rightMotor.set(1);
+  }
+
+  public void DriveRight(){
+      m_leftMotor.set(1);
+      m_rightMotor.set(0);
+  }
+
+  public void DriveBackward(){
+    m_leftMotor.set(-1);
+    m_leftMotor.set(-1);
+  }
+
 
   public void arcadeDrive(double xaxisSpeed, double zaxisRotate) {
     m_diffDrive.arcadeDrive(xaxisSpeed, zaxisRotate);
@@ -82,11 +102,5 @@ public class RomiDrivetrain extends SubsystemBase {
     // This method will be called once per scheduler run during simulation
   }
 
-  public double getLeftY() {
-    return 0;
-  }
-
-  public double getRightY() {
-    return 0;
-  }
+  
 }

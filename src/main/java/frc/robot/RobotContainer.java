@@ -7,6 +7,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.simulation.JoystickSim;
+import frc.robot.commands.DriveBackwardCommand;
+import frc.robot.commands.DriveForwardCommand;
+import frc.robot.commands.DriveLeftCommand;
+import frc.robot.commands.DriveRightCommand;
 import frc.robot.commands.DriveRomiCommand;
 import frc.robot.subsystems.RomiDrivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -39,6 +43,7 @@ public class RobotContainer {
 
 
     configureButtonBindings();
+    
   }
 
   /**
@@ -52,8 +57,10 @@ public class RobotContainer {
     // new Button(xController::getYButton).whenHeld(new DriveRomiCommand(m_romiDrivetrain));
     // new Button(xController::getXButton).whenHeld(new DriveRomiCommand(m_romiDrivetrain));
 
-    
-
+    new Button(xController::getYButton).whenHeld((new DriveForwardCommand(m_romiDrivetrain)));
+    new Button(xController::getXButton).whenHeld((new DriveLeftCommand(m_romiDrivetrain)));
+    new Button(xController::getBButton).whenHeld((new DriveRightCommand(m_romiDrivetrain)));
+    new Button(xController::getAButton).whenHeld((new DriveBackwardCommand(m_romiDrivetrain)));
     
 
   }
