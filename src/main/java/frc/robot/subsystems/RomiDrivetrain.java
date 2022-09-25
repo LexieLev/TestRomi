@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class RomiDrivetrain extends SubsystemBase {
@@ -37,9 +38,26 @@ public class RomiDrivetrain extends SubsystemBase {
     m_rightMotor.setInverted(true);
   }
 
+  public void Drive(double y){
+    m_leftMotor.set(-y);
+    m_rightMotor.set(-y);
+  }
+
+  public void Left(double x){
+    m_leftMotor.set(-x);
+    m_rightMotor.set(x);
+  }
+
+  public void Right(double x){
+    m_leftMotor.set(x);
+    m_leftMotor.set(-x);
+  }
+
+
   public void arcadeDrive(double xaxisSpeed, double zaxisRotate) {
     m_diffDrive.arcadeDrive(xaxisSpeed, zaxisRotate);
   }
+
 
   public void resetEncoders() {
     m_leftEncoder.reset();
@@ -62,5 +80,13 @@ public class RomiDrivetrain extends SubsystemBase {
   @Override
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation
+  }
+
+  public double getLeftY() {
+    return 0;
+  }
+
+  public double getRightY() {
+    return 0;
   }
 }

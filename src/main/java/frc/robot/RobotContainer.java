@@ -4,10 +4,13 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ExampleCommand;
+import edu.wpi.first.wpilibj.simulation.JoystickSim;
+import frc.robot.commands.DriveRomiCommand;
 import frc.robot.subsystems.RomiDrivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.Button;
 //test
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -19,11 +22,22 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final RomiDrivetrain m_romiDrivetrain = new RomiDrivetrain();
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_romiDrivetrain);
+
+  private final XboxController xController = new XboxController(Constants.RobotContainer.controller0);
+
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
+
+    m_romiDrivetrain.setDefaultCommand(
+    new DriveRomiCommand(
+      m_romiDrivetrain, xController, 
+      () -> ((xController.getLeftY())),
+      () -> ((xController.getLeftX()))));
+      
+
+
     configureButtonBindings();
   }
 
@@ -33,15 +47,26 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+
+    // new Button(xController::getYButton).whenHeld(new DriveRomiCommand(m_romiDrivetrain));
+    // new Button(xController::getXButton).whenHeld(new DriveRomiCommand(m_romiDrivetrain));
+
+    
+
+    
+
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
    * @return the command to run in autonomous
    */
+  
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+   return null;
   }
+  
 }
