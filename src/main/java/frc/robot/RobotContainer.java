@@ -34,11 +34,11 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
 
-    m_romiDrivetrain.setDefaultCommand(
-    new DriveRomiCommand(
-      m_romiDrivetrain, xController, 
-      () -> ((xController.getLeftY())),
-      () -> ((xController.getLeftX()))));
+    // m_romiDrivetrain.setDefaultCommand(
+    // new DriveRomiCommand(
+    //   m_romiDrivetrain, xController, 
+    //   () -> ((xController.getLeftY())),
+    //   () -> ((xController.getLeftX()))));
       
 
 
@@ -56,6 +56,9 @@ public class RobotContainer {
 
     // new Button(xController::getYButton).whenHeld(new DriveRomiCommand(m_romiDrivetrain));
     // new Button(xController::getXButton).whenHeld(new DriveRomiCommand(m_romiDrivetrain));
+    new Button(xController::getLeftStickButton)
+    .whenPressed(new DriveRomiCommand(m_romiDrivetrain, xController));
+
 
     new Button(xController::getYButton).whenHeld((new DriveForwardCommand(m_romiDrivetrain)));
     new Button(xController::getXButton).whenHeld((new DriveLeftCommand(m_romiDrivetrain)));

@@ -39,18 +39,18 @@ public class RomiDrivetrain extends SubsystemBase {
   }
 
   public void Drive(double y){
-    m_leftMotor.set(-y);
-    m_rightMotor.set(-y);
+    m_leftMotor.set(4*-y);
+    m_rightMotor.set(4*-y);
   }
 
-  public void Left(double x){
-    m_leftMotor.set(-x);
-    m_rightMotor.set(x);
+  public void Left(double x, double y){
+    m_leftMotor.set(4*x);
+    m_rightMotor.set(y);
   }
 
-  public void Right(double x){
-    m_leftMotor.set(x);
-    m_leftMotor.set(-x);
+  public void Right(double x, double y){
+    m_leftMotor.set(y);
+    m_rightMotor.set(4*x);
   }
 
   public void DriveForward(){
@@ -70,7 +70,7 @@ public class RomiDrivetrain extends SubsystemBase {
 
   public void DriveBackward(){
     m_leftMotor.set(-1);
-    m_leftMotor.set(-1);
+    m_rightMotor.set(-1);
   }
 
 

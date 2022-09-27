@@ -32,19 +32,17 @@ public class DriveRomiCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final RomiDrivetrain driverSubsystem;
   private XboxController xController;
-  private final DoubleSupplier translationXSupplier;
-  private final DoubleSupplier translationYSupplier;
+  
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public DriveRomiCommand(RomiDrivetrain subsystem, XboxController xController, DoubleSupplier translationXSupplier, DoubleSupplier translationYSupplier) {
+  public DriveRomiCommand(RomiDrivetrain subsystem, XboxController xController) {
     this.driverSubsystem = subsystem;
     this.xController = xController;
-    this.translationXSupplier = translationXSupplier;
-    this.translationYSupplier = translationYSupplier;
+    
 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem); 
@@ -57,12 +55,23 @@ public class DriveRomiCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double x = translationXSupplier.getAsDouble();
-    double y = translationYSupplier.getAsDouble();
     
+    if (xController.getLeftX()>-0.1 && xController.getLeftX()<0.1 && xController.getLeftY()>-0.1 && xController.getLeftY()>0.1){
+      driverSubsystem.Drive(0);
+      driverSubsystem.Left(0, 0);
+      driverSubsystem.Right(0, 0);
+   
+    } else if (xController.getLeftX()>-0.2 && xController.getLeftX()<0.2 ){
+
     driverSubsystem.Drive((xController.getLeftY()));
-    driverSubsystem.Left((xController.getLeftX()));
-    driverSubsystem.Right((xController.getLeftX()));
+    
+    } else if (xController.getLeftX()<-0.2){
+
+    driverSubsystem.Left((xController.getLeftX()), xController.getLeftY());
+    } else if (xController.getLeftX()>0.2) {
+
+    driverSubsystem.Right((xController.getLeftX()), xController.getLeftY());
+    }
   
   }
 
