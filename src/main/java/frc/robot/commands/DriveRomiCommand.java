@@ -56,19 +56,19 @@ public class DriveRomiCommand extends CommandBase {
   @Override
   public void execute() {
     
-    if (xController.getLeftX()>-0.1 && xController.getLeftX()<0.1 && xController.getLeftY()>-0.1 && xController.getLeftY()>0.1){
+    if (xController.getLeftX()>-0.5 && xController.getLeftX()<0.5 && xController.getLeftY()>-0.5 && xController.getLeftY()<0.5){
       driverSubsystem.Drive(0);
       driverSubsystem.Left(0, 0);
       driverSubsystem.Right(0, 0);
    
-    } else if (xController.getLeftX()>-0.2 && xController.getLeftX()<0.2 ){
+    } else if (xController.getLeftX()>-0.5 && xController.getLeftX()<0.5 ){
 
     driverSubsystem.Drive((xController.getLeftY()));
     
-    } else if (xController.getLeftX()<-0.2){
+    } else if (xController.getLeftX()<-0.5){
 
     driverSubsystem.Left((xController.getLeftX()), xController.getLeftY());
-    } else if (xController.getLeftX()>0.2) {
+    } else if (xController.getLeftX()>0.5) {
 
     driverSubsystem.Right((xController.getLeftX()), xController.getLeftY());
     }

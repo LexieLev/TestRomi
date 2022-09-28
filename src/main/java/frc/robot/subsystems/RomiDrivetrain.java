@@ -44,13 +44,13 @@ public class RomiDrivetrain extends SubsystemBase {
   }
 
   public void Left(double x, double y){
-    m_leftMotor.set(4*x);
-    m_rightMotor.set(y);
+    m_leftMotor.set(0);
+    m_rightMotor.set(4*-x);
   }
 
   public void Right(double x, double y){
-    m_leftMotor.set(y);
-    m_rightMotor.set(4*x);
+    m_leftMotor.set(4*x);
+    m_rightMotor.set(0);
   }
 
   public void DriveForward(){
